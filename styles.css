@@ -5,9 +5,10 @@
 }
 
 body {
-    background-color: #f1f5f9;
+    background-color: #e2e8f0;
     display: grid;
     grid-template-rows: auto;
+    word-wrap: break-word;
 }
 
 header {
@@ -23,9 +24,10 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
 }
 
-.add {
+.addBook {
     height: 300px;
     width: 240px;
     background-color: white;
@@ -38,6 +40,115 @@ main {
     transition: all 0.4s ease-in-out;
 }
 
-.add:hover {
+.addBook:hover {
     transform: scale(1.1);
+}
+
+.addBookForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #f1f5f9;
+    padding: 30px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.addBookForm.active {
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.addBookForm>form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.addBookForm>form>div {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+button[id = addNewBook] {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: #bef264;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+button[id = addNewBook]:hover {
+    background-color: #a3e635;
+}
+
+input[type=checkbox] {
+    width: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: scale(0);
+}
+
+.overlay.active {
+    transform: scale(1);
+}
+
+.bookCard {
+    height: 300px;
+    width: 240px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.2rem;
+    box-shadow: 4px 4px 4px gray;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.btns-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btns-wrapper>button {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.removeBtn {
+    background-color: #fca5a5;
+}
+
+.removeBtn:hover {
+    background-color: #f87171;
+}
+
+.read {
+    background-color: #bef264;
+}
+
+.not-read {
+    background-color: #fca5a5;
 }
