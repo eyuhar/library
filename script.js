@@ -114,9 +114,11 @@ function switchIsReadBtnColor(e){
     if(e.target.classList.contains("read")){
         e.target.classList.remove("read");
         e.target.classList.add("not-read");
+        e.target.innerHTML = "Not read";
     }else{
         e.target.classList.remove("not-read");
         e.target.classList.add("read");
+        e.target.innerHTML = "Read";
     }
 }
 
