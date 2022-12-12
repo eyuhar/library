@@ -1,4 +1,8 @@
-let myLibrary = [];
+let myLibrary = localStorage["libraryStorage"] ? JSON.parse(localStorage.getItem("libraryStorage")) : [];
+
+function updateLocalStorage(){
+    localStorage.setItem("libraryStorage", JSON.stringify(myLibrary));
+}
 
 function Book(id, author, title, numberOfPages, isRead){
     this.id = id;
@@ -10,6 +14,7 @@ function Book(id, author, title, numberOfPages, isRead){
 
 function addBookToLibrary(book){
     myLibrary.push(book);
+    updateLocalStorage();
 }
 
 const addBook = document.querySelector(".addBook");
@@ -89,7 +94,7 @@ function showBookList(){
         let isReadBtn = document.createElement("button");
         isReadBtn.innerHTML = `${book.isRead === true ? "Read" : "Not read"}`;
         isReadBtn.classList.add("isReadBtn", `${book.isRead === true ? "read" : "not-read"}`);
-        isReadBtn.addEventListener("click", switchIsReadBtnColor);
+        isReadBtn.addEventListener("click", switchIsRead);
 
         let removeBtn = document.createElement("button");
         removeBtn.innerHTML = "Remove";
@@ -108,7 +113,7 @@ function resetBookList(){
     Array.from(bookcards).map((bookcard) => bookcard.remove());
 }
 
-function switchIsReadBtnColor(e){
+function switchIsRead(e){
     const currentBook = myLibrary.find(book => book.id.toString() === e.target.parentNode.parentNode.dataset.id);
     currentBook.isRead = !currentBook.isRead;
     if(e.target.classList.contains("read")){
@@ -120,11 +125,15 @@ function switchIsReadBtnColor(e){
         e.target.classList.add("read");
         e.target.innerHTML = "Read";
     }
+    updateLocalStorage();
 }
 
 function removeBook(e) {
     const currentBook = myLibrary.find(book => book.id.toString() === e.target.parentNode.parentNode.dataset.id);
     myLibrary.splice(myLibrary.indexOf(currentBook), 1);
+    updateLocalStorage();
     resetBookList();
     showBookList();
 }
+
+showBookList();
