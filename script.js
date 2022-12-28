@@ -4,12 +4,14 @@ function updateLocalStorage(){
     localStorage.setItem("libraryStorage", JSON.stringify(myLibrary));
 }
 
-function Book(id, author, title, numberOfPages, isRead){
-    this.id = id;
-    this.author = author;
-    this.title = title;
-    this.numberOfPages = numberOfPages;
-    this.isRead = isRead;
+class Book{
+    constructor(id, author, title, numberOfPages, isRead){
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.numberOfPages = numberOfPages;
+        this.isRead = isRead;
+    }
 }
 
 function addBookToLibrary(book){
