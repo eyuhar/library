@@ -44,17 +44,22 @@ const newBookBtn = document.getElementById("addNewBook");
 newBookBtn.addEventListener("click", addNewBook);
 
 function addNewBook(e){
-    e.preventDefault();
-    let newBook = new Book( myLibrary.length === 0 ? myLibrary.length : myLibrary[myLibrary.length - 1].id + 1,
-                            authorInput.value,
-                            titleInput.value,
-                            numberOfPagesInput.value,
-                            isReadInput.checked);
-    addBookToLibrary(newBook);
-    hideBookForm();
-    resetFormInput();
-    resetBookList();
-    showBookList();
+    //e.preventDefault();
+
+    if (authorInput.checkValidity() && titleInput.checkValidity() && numberOfPagesInput.checkValidity()) {
+        let newBook = new Book( myLibrary.length === 0 ? myLibrary.length : myLibrary[myLibrary.length - 1].id + 1,
+                                authorInput.value,
+                                titleInput.value,
+                                numberOfPagesInput.value,
+                                isReadInput.checked);
+
+        addBookToLibrary(newBook);
+    }
+
+    //hideBookForm();
+    //resetFormInput();
+    //resetBookList();
+    //showBookList();
 }
 
 function resetFormInput(){
